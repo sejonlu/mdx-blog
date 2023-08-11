@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 import { Play, Pause, RotateCcw } from "react-feather";
 
 import Card from "@/components/Card";
@@ -15,6 +16,8 @@ const COLORS = [
 ];
 
 function CircularColorsDemo() {
+  const id = React.useId();
+
   const [timeElapsed, setTimeElapsed] = React.useState(0);
   const [isRunning, setIsRunning] = React.useState(false);
 
@@ -48,7 +51,12 @@ function CircularColorsDemo() {
 
           return (
             <li className={styles.color} key={index}>
-              {isSelected && <div className={styles.selectedColorOutline} />}
+              {isSelected && (
+                <motion.div
+                  layoutId={`${id}-selected-color-outline`}
+                  className={styles.selectedColorOutline}
+                />
+              )}
               <div
                 className={clsx(
                   styles.colorBox,
