@@ -6,9 +6,8 @@ import styles from "./postSlug.module.css";
 
 import { loadBlogPost } from "../../helpers/file-helpers";
 
-import { MDXRemote } from "next-mdx-remote/rsc";
-
 import { BLOG_TITLE } from "../../constants";
+import CustomMDX from "@/components/CustomMDX/CustomMDX";
 
 export async function generateMetadata({ params }) {
   const { frontmatter } = await loadBlogPost(params.postSlug);
@@ -27,7 +26,7 @@ async function BlogPost({ params }) {
         publishedOn={frontmatter.publishedOn}
       />
       <div className={styles.page}>
-        <MDXRemote source={content} />
+        <CustomMDX source={content} />
       </div>
     </article>
   );
