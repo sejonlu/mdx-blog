@@ -1,4 +1,5 @@
 import React from "react";
+import { MotionConfig } from "framer-motion";
 
 import BlogSummaryCard from "@/components/BlogSummaryCard";
 
@@ -17,19 +18,21 @@ async function Home() {
   const posts = await getBlogPostList();
 
   return (
-    <div className={styles.wrapper}>
-      <h1 className={styles.mainHeading}>Latest Content:</h1>
+    <MotionConfig reducedMotion="user">
+      <div className={styles.wrapper}>
+        <h1 className={styles.mainHeading}>Latest Content:</h1>
 
-      {posts.map((post) => (
-        <BlogSummaryCard
-          key={post.slug}
-          slug={post.slug}
-          title={post.title}
-          abstract={post.abstract}
-          publishedOn={post.publishedOn}
-        />
-      ))}
-    </div>
+        {posts.map((post) => (
+          <BlogSummaryCard
+            key={post.slug}
+            slug={post.slug}
+            title={post.title}
+            abstract={post.abstract}
+            publishedOn={post.publishedOn}
+          />
+        ))}
+      </div>
+    </MotionConfig>
   );
 }
 
